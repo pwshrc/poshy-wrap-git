@@ -434,9 +434,7 @@ function Invoke-GitBranch {
     & $git_bin branch @args
 }
 Set-Alias -Name gb -Value Invoke-GitBranch
-
 Set-Alias -Name gbD -Value Remove-GitBranchForcefully
-
 Set-Alias -Name gbl -Value Get-GitBranchList
 
 function Get-GitBranchListAll {
