@@ -3,12 +3,22 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 
-Get-ChildItem -Path "$PSScriptRoot/*.ps1" | ForEach-Object {
-    . $_.FullName
-    if ([char]::IsUpper($_.BaseName[0])) {
-        Export-ModuleMember -Function $_.BaseName
-    }
-}
+. "$PSScriptRoot/aliases.ps1"
+
+. "$PSScriptRoot/Format-GitRepository.ps1"
+Export-ModuleMember -Function Format-GitRepository
+
+. "$PSScriptRoot/Get-LocationGitRoot.ps1"
+Export-ModuleMember -Function Get-LocationGitRoot
+
+. "$PSScriptRoot/Push-LocationGitRoot.ps1"
+Export-ModuleMember -Function Push-LocationGitRoot
+
+. "$PSScriptRoot/Set-LocationGitRoot.ps1"
+Export-ModuleMember -Function Set-LocationGitRoot
+
+. "$PSScriptRoot/Split-GitHistory.ps1"
+Export-ModuleMember -Function Split-GitHistory
 
 if (Test-Path Function:\Invoke-Hub -ErrorAction SilentlyContinue) {
     Export-ModuleMember -Function Invoke-Hub
